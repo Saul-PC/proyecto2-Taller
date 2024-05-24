@@ -1,5 +1,3 @@
-import time
-t0 = time.time()
 def encontrarCoords(M):
     res = []
     char = ""
@@ -318,13 +316,8 @@ def juego(piezas,L,A):
     return "No se encontró solución"
 
 
-
 L,A,P = map(int, input().split())
 
 mats = matrices(P)
 
 print(juego(mats,L,A))
-t1 = time.time()
-print(t1-t0)
-
-
