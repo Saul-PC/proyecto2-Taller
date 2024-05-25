@@ -7,6 +7,12 @@ def encontrarCoords(M):
                 res.append((i,j))
                 char = M[i][j]
     return res,char
+    """
+    Dominio: Una matriz de n*m
+    Codominio: Una tupla de dos elementos, el primero es una lista con las
+    coordenadas de la pieza guardadas en tuplas y el segundo es el caracter
+    de la pieza que viene en la matriz
+    """
 
 
 def espejo(M):
@@ -14,7 +20,11 @@ def espejo(M):
     for i in range(len(M[0])):
         mEsp[i] = M[i][::-1]
     return mEsp
-
+    """
+    Dominio: Una matriz de n*m
+    Codominio: Una matriz de n*m donde los elementos son el espejo de la
+    matriz que entró
+    """
 
 def rotacion(M,indice):
     n = len(M)
@@ -29,7 +39,10 @@ def rotacion(M,indice):
         for j in range(n):
             res[j][n-1-i] = M[i][j]
     return rotacion(res,indice-1)
-
+    """
+    Dominio: Una matriz de n*m y un número entero
+    Codominio: Una matriz que fue rotada la cantidad de veces del índice
+    """
 
 def esquinaMat(M):
     matEsquina = [["." for _ in range(len(M))] for _ in range(len(M[0]))]
@@ -63,7 +76,11 @@ def esquinaMat(M):
     for i,j in res:
         matEsquina[i][j] = char
     return matEsquina
-
+    """
+    Dominio: Una matriz de n*m
+    Codominio: Una matriz de las dimensiones de la original pero con una pieza
+    colocada arriba en la esquina izquierda lo más posible
+    """
 
 def insertarCoords(M,XY,char):
     matValida = [["." for i in range(len(M[0]))] for j in range(len(M))]
@@ -74,7 +91,13 @@ def insertarCoords(M,XY,char):
     for x,y in XY:
         matValida[x][y] = char
     return matValida
-
+    """
+    Dominio: Una matriz de n*m, una lista de tuplas y un string que contiene
+    un caracter
+    Codominio: Una matriz de las dimensiones de la original con una pieza ingresada
+    en las coordenadas que venían en las tuplas de la lista y con el caracter
+    ingresado en cada espacio de la pieza
+    """
 
 def esSimetrico(M):
     M = esquinaMat(M)
@@ -84,7 +107,10 @@ def esSimetrico(M):
             if M[i][j] != mEsp[i][j]:
                 return False
     return True
-
+    """
+    Dominio: Una matriz de n*m
+    Codominio: Un valor booleano
+    """
 
 def piezaJusta(M):
     if M == [["." for i in range(len(M))] for j in range(len(M[0]))]:
@@ -112,7 +138,11 @@ def piezaJusta(M):
     for x,y in coords:
         matJusta[x][y] = char
     return matJusta
-
+    """
+    Dominio: Una matriz de n*m
+    Codominio: Una matriz donde la pieza que trae la matriz original está colocada
+    de forma que apenas cabe en esa nueva matriz
+    """
 
 def hijosNada(tablero,piezas,indice,L,A):
     hijos = []
@@ -146,7 +176,10 @@ def hijosNada(tablero,piezas,indice,L,A):
                 validCoords = []
 
     return hijos
-
+    """
+    Dominio: Una matriz de n*m, una lista que contiene matrices y 3 números enteros
+    Codominio: Una lista con matrices
+    """
 
 def hijosRots(tablero,piezas,indice,L,A):
     hijos = []
@@ -185,7 +218,10 @@ def hijosRots(tablero,piezas,indice,L,A):
 
 
     return hijos
-
+    """
+    Dominio: Una matriz de n*m, una lista que contiene matrices y 3 números enteros
+    Codominio: Una lista con matrices
+    """
 
 def hijosTodo(tablero,piezas,indice,L,A):
     hijos = []
@@ -253,7 +289,10 @@ def hijosTodo(tablero,piezas,indice,L,A):
                     hijos.append((nuevoHijo,indice+1))
                     validCoords = []
     return hijos
-
+    """
+    Dominio: Una matriz de n*m, una lista que contiene matrices y 3 números enteros
+    Codominio: Una lista con matrices
+    """
 
 def buscarHijos(tablero,piezas,indice,L,A):
 
@@ -266,7 +305,10 @@ def buscarHijos(tablero,piezas,indice,L,A):
         return hijosRots(tablero,piezas,indice,L,A)
     
     return hijosTodo(tablero,piezas,indice,L,A)
-
+    """
+    Dominio: Una matriz de n*m, una lista que contiene matrices y 3 números enteros
+    Codominio: Una lista con matrices
+    """
 
 def matrices(P):
     string = ""
@@ -294,7 +336,10 @@ def matrices(P):
             cont += 1
 
     return mats
-
+    """
+    Dominio: Un número entero
+    Codominio: Una lista de matrices
+    """
 
 def juego(piezas,L,A): 
     pila = [([["." for i in range(A)] for j in range(L)],0)]
@@ -314,7 +359,10 @@ def juego(piezas,L,A):
         for i in hijos:
             pila.append(i)
     return "No se encontró solución"
-
+    """
+    Dominio: Una lista de matrices y 2 números enteros
+    Codominio: Una matriz
+    """
 
 L,A,P = map(int, input().split())
 
